@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="CareerMatch — resume and job description overlap score">
+  <title>CareerMatch</title>
+  <defs>
+    <linearGradient id="cm-arc" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6C4CE0"/>
+      <stop offset="52%" stop-color="#3D75B9"/>
+      <stop offset="100%" stop-color="#0E9E93"/>
+    </linearGradient>
+
+    <!-- The overlap is drawn as the true geometric intersection of the two
+         fields, not an approximation: circle A clipped by circle B. -->
+    <clipPath id="cm-left">
+      <circle cx="52" cy="66" r="23"/>
+    </clipPath>
+  </defs>
+
+  <!-- Score ring: track, then a 74% sweep in the resume-to-job gradient -->
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#DCE1EB" stroke-width="9"/>
+  <circle cx="64" cy="64" r="52"
+          fill="none"
+          stroke="url(#cm-arc)"
+          stroke-width="9"
+          stroke-linecap="round"
+          stroke-dasharray="242 327"
+          transform="rotate(-90 64 64)"/>
+
+  <!-- Two source documents, reduced to their essential shape -->
+  <circle cx="52" cy="66" r="23" fill="#6C4CE0" fill-opacity="0.34"/>
+  <circle cx="76" cy="66" r="23" fill="#0E9E93" fill-opacity="0.34"/>
+  <g clip-path="url(#cm-left)">
+    <circle cx="76" cy="66" r="23" fill="#3D75B9" fill-opacity="0.92"/>
+  </g>
+  <circle cx="52" cy="66" r="23" fill="none" stroke="#6C4CE0" stroke-width="2.4" stroke-opacity="0.9"/>
+  <circle cx="76" cy="66" r="23" fill="none" stroke="#0E9E93" stroke-width="2.4" stroke-opacity="0.9"/>
+
+  <!-- Text lines inside each field: a resume and a posting, abstracted -->
+  <g stroke="#6C4CE0" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.75">
+    <line x1="38" y1="58" x2="49" y2="58"/>
+    <line x1="38" y1="66" x2="46" y2="66"/>
+    <line x1="38" y1="74" x2="49" y2="74"/>
+  </g>
+  <g stroke="#0E9E93" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.75">
+    <line x1="79" y1="58" x2="90" y2="58"/>
+    <line x1="82" y1="66" x2="90" y2="66"/>
+    <line x1="79" y1="74" x2="90" y2="74"/>
+  </g>
+
+  <!-- The match tick sits exactly on the overlap -->
+  <path d="M58 66.5 L62.5 71 L70.5 61.5"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="3.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Score label, in the mono face the app uses for every number -->
+  <text x="64" y="34"
+        font-family="'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace"
+        font-size="17"
+        font-weight="500"
+        fill="#141B2E"
+        text-anchor="middle"
+        letter-spacing="-0.5">75</text>
+</svg>

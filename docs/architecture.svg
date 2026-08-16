@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640" font-family="IBM Plex Sans, ui-sans-serif, system-ui, sans-serif">
+  <title>CareerMatch architecture</title>
+  <desc>All processing happens inside the browser tab. A static CDN serves the bundle; no server, database or third-party API is involved after the initial page load.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5B6478"/>
+    </marker>
+    <style>
+      .box { fill: #FFFFFF; stroke: #DCE1EB; stroke-width: 1.5; rx: 10; }
+      .lbl { font-size: 13px; fill: #141B2E; font-weight: 500; }
+      .sub { font-size: 11px; fill: #5B6478; }
+      .eyebrow { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; fill: #5B6478; letter-spacing: 0.12em; }
+      .flow { stroke: #5B6478; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+      .title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; fill: #141B2E; }
+    </style>
+  </defs>
+
+  <rect width="980" height="640" fill="#EDEFF5"/>
+  <text x="36" y="42" class="title">CareerMatch — architecture</text>
+  <text x="36" y="64" class="sub">Everything inside the dashed boundary runs in the user's browser tab. Nothing crosses it.</text>
+
+  <!-- CDN -->
+  <rect x="36" y="90" width="200" height="66" class="box"/>
+  <text x="52" y="114" class="eyebrow">STATIC HOST</text>
+  <text x="52" y="134" class="lbl">Cloudflare Pages</text>
+  <text x="52" y="149" class="sub">or GitHub Pages · HTML, JS, CSS, fonts</text>
+  <path d="M 240 123 L 300 123" class="flow"/>
+  <text x="272" y="114" class="sub" text-anchor="middle">loads once</text>
+
+  <!-- Browser boundary -->
+  <rect x="308" y="82" width="640" height="522" rx="16" fill="#FFFFFF" fill-opacity="0.55" stroke="#3D75B9" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="326" y="104" class="eyebrow" fill="#3D75B9">BROWSER TAB — TRUST BOUNDARY</text>
+
+  <!-- Inputs -->
+  <rect x="330" y="120" width="180" height="70" class="box" stroke="#D8CEF9"/>
+  <text x="346" y="143" class="eyebrow" fill="#6C4CE0">SOURCE 01</text>
+  <text x="346" y="162" class="lbl">Resume</text>
+  <text x="346" y="177" class="sub">PDF via pdf.js worker, or text</text>
+
+  <rect x="540" y="120" width="180" height="70" class="box" stroke="#B7E4DF"/>
+  <text x="556" y="143" class="eyebrow" fill="#0E9E93">SOURCE 02</text>
+  <text x="556" y="162" class="lbl">Job description</text>
+  <text x="556" y="177" class="sub">pasted text</text>
+
+  <path d="M 420 194 L 420 222" class="flow"/>
+  <path d="M 630 194 L 630 222" class="flow"/>
+
+  <!-- Pipeline -->
+  <rect x="330" y="226" width="390" height="252" rx="12" fill="#F7F9FC" stroke="#DCE1EB" stroke-width="1.5"/>
+  <text x="346" y="248" class="eyebrow">ANALYSIS PIPELINE — SYNCHRONOUS, ~5 ms</text>
+
+  <rect x="346" y="260" width="358" height="40" class="box"/>
+  <text x="360" y="278" class="lbl">1 · Section parser</text>
+  <text x="360" y="292" class="sub">heading regexes → required · preferred · experience · skills</text>
+
+  <rect x="346" y="308" width="174" height="52" class="box"/>
+  <text x="360" y="326" class="lbl">2 · Skill extraction</text>
+  <text x="360" y="340" class="sub">longest-match n-grams over</text>
+  <text x="360" y="352" class="sub">a 190-entry taxonomy</text>
+
+  <rect x="530" y="308" width="174" height="52" class="box"/>
+  <text x="544" y="326" class="lbl">3 · Keyword layer</text>
+  <text x="544" y="340" class="sub">tf-idf vs. a bundled</text>
+  <text x="544" y="352" class="sub">32-posting corpus</text>
+
+  <rect x="346" y="368" width="358" height="40" class="box"/>
+  <text x="360" y="386" class="lbl">4 · Component scoring</text>
+  <text x="360" y="400" class="sub">demand × credit · cosine similarity · date-range merge · degree rank</text>
+
+  <rect x="346" y="416" width="358" height="46" class="box" stroke="#C3D8EE"/>
+  <text x="360" y="434" class="lbl">5 · Weighted total + recommendations</text>
+  <text x="360" y="450" class="sub">Σ (score × weight) — reweighting never re-runs steps 1–4</text>
+
+  <path d="M 720 268 L 762 268" class="flow"/>
+
+  <!-- Storage -->
+  <rect x="770" y="226" width="160" height="86" class="box"/>
+  <text x="786" y="248" class="eyebrow">PERSISTENCE</text>
+  <text x="786" y="268" class="lbl">localStorage</text>
+  <text x="786" y="284" class="sub">this origin only</text>
+  <text x="786" y="298" class="sub">one key, versioned</text>
+
+  <rect x="770" y="326" width="160" height="52" class="box"/>
+  <text x="786" y="346" class="lbl">Delete all data</text>
+  <text x="786" y="362" class="sub">complete — it is the</text>
+  <text x="786" y="374" class="sub">only copy in existence</text>
+
+  <path d="M 850 316 L 850 322" class="flow"/>
+
+  <!-- UI -->
+  <path d="M 525 478 L 525 500" class="flow"/>
+  <rect x="330" y="504" width="600" height="80" class="box"/>
+  <text x="346" y="526" class="eyebrow">REACT UI</text>
+  <text x="346" y="546" class="lbl">Score ring · component bars · radar · keyword chart · skill cloud · gaps · recommendations</text>
+  <text x="346" y="566" class="sub">Recharts is code-split — the landing page ships 28 KB gzipped and never loads it</text>
+  <text x="346" y="578" class="sub">Live weight sliders recompute the total from cached component scores</text>
+
+  <!-- No-server annotation -->
+  <rect x="36" y="200" width="240" height="120" rx="10" fill="#FAEAEE" stroke="#EFC8D1" stroke-width="1.5"/>
+  <text x="52" y="224" class="eyebrow" fill="#B23A55">DELIBERATELY ABSENT</text>
+  <text x="52" y="246" class="sub" fill="#B23A55">✕  Application server</text>
+  <text x="52" y="266" class="sub" fill="#B23A55">✕  Database</text>
+  <text x="52" y="286" class="sub" fill="#B23A55">✕  LLM / inference API</text>
+  <text x="52" y="306" class="sub" fill="#B23A55">✕  API keys, auth, secrets</text>
+
+  <rect x="36" y="340" width="240" height="128" rx="10" fill="#E7EFF9" stroke="#C3D8EE" stroke-width="1.5"/>
+  <text x="52" y="364" class="eyebrow" fill="#3D75B9">CONSEQUENCES</text>
+  <text x="52" y="386" class="sub">$0/month to operate</text>
+  <text x="52" y="406" class="sub">No egress of user documents</text>
+  <text x="52" y="426" class="sub">Works offline after first load</text>
+  <text x="52" y="446" class="sub">Deterministic — same in, same out</text>
+  <text x="52" y="462" class="sub">Scales to any traffic the CDN handles</text>
+</svg>
