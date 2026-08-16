@@ -337,4 +337,8 @@ Stated plainly, because a scoring tool that hides its failure modes is worse tha
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+Copyright © 2026 Darel Rodriguez. All rights reserved.
+
+This project is published for portfolio and evaluation purposes. You're welcome to read the source and run it locally to assess my work. Copying, modifying, redistributing, deploying or using it commercially requires my written permission — see LICENSE for the full terms.
+
+For licensing enquiries: darelrodriguez1997@gmail.com
