@@ -222,7 +222,7 @@ the engine falls out of the arithmetic.
 
 ## Architecture
 
-![Architecture](docs/png/architecture.png)
+![Architecture](docs/architecture.png)
 
 ```
 src/
