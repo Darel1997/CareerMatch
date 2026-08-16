@@ -1,0 +1,45 @@
+CareerMatch — Proprietary License
+
+Copyright (c) 2026 Darel Rodriguez. All rights reserved.
+
+This software and its source code, design, documentation, and associated
+assets (the "Software") are the exclusive property of Darel Rodriguez.
+
+The Software is published publicly for the sole purposes of demonstration,
+portfolio review, and technical evaluation by prospective employers, clients,
+and collaborators.
+
+PERMITTED
+  - Viewing and reading the source code.
+  - Running the Software locally for the purpose of evaluating the author's
+    work.
+  - Quoting brief excerpts with attribution, for review, commentary, teaching,
+    or reporting.
+
+NOT PERMITTED WITHOUT PRIOR WRITTEN PERMISSION FROM THE COPYRIGHT HOLDER
+  - Copying, reproducing, or redistributing the Software or any substantial
+    portion of it.
+  - Modifying the Software or creating derivative works from it.
+  - Using the Software, in whole or in part, in any commercial product or
+    service.
+  - Deploying or publishing the Software, or any derivative of it, under any
+    name.
+  - Removing or altering this notice or any attribution contained in the
+    Software.
+
+No license, express or implied, is granted to any patent, trademark, or other
+intellectual property right of the copyright holder except as expressly stated
+above.
+
+For permission beyond the scope of this license, contact:
+darelrodriguez1997@gmail.com
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Third-party dependencies listed in package.json remain under their own
+licenses, which are unaffected by this notice.
